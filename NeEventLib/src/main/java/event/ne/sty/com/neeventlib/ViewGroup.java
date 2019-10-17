@@ -30,11 +30,9 @@ public class ViewGroup extends View{
     }
 
     //事件分发的入口
-
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        System.out.println(name + "ViewGroup dispatchTouchEvent");
+        System.out.println(getName() + "->ViewGroup dispatchTouchEvent");
         boolean handled = false;
         TouchTarget newTouchTarget = null;
         //判断是否需要拦截

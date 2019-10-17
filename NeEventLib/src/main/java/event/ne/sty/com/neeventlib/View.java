@@ -52,7 +52,7 @@ public class View {
      * @return
      */
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        System.out.println(name + "View dispatchTouchEvent");
+        System.out.println(getName() + "->View dispatchTouchEvent");
         //消费
         boolean result = false;
         //是否有onTouchListener 有则执行
@@ -80,6 +80,10 @@ public class View {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override
