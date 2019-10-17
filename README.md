@@ -1,4 +1,4 @@
-### NeEvent 简要手写Android事件分发流程
+### NeEvent 简要手写模拟Android事件分发流程
 #### 一、本项目示例
 ##### 1. down(事件未被消费-不对view设置onClickListener --> 参考show/u_event.png)
 ```android
