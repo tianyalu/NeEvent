@@ -1,6 +1,6 @@
 ### NeEvent 简要手写Android事件分发流程
 #### 一、本项目示例
-1. down(事件未被消费-不对view设置onClickListener --> 参考show/u_event.png)
+##### 1. down(事件未被消费-不对view设置onClickListener --> 参考show/u_event.png)
 ```android
     ViewGroup viewGroup = new ViewGroup(0, 0, 1080, 1920);
     viewGroup.setName("顶层容器");
@@ -52,8 +52,8 @@
      顶层容器的 onTouch 事件
 ```
 参考：  
-![image](https://github.com/tianyalu/NeEvent/blob/master/show/u_event.png)
-2. down(事件被消费--对view设置onClickListener --> 参考show/l_event.png)
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/u_event.png)  
+##### 2. down(事件被消费--对view设置onClickListener --> 参考show/l_event.png)
 ```android
    //在1.的基础上添加如下代码
     view.setOnClickListener(new OnClickListener() {
@@ -72,8 +72,8 @@
      子控件view的 onClick 事件
 ```
 参考：  
-![image](https://github.com/tianyalu/NeEvent/blob/master/show/l_event.png)
-3. down->up(事件未被消费-不对view设置onClickListener)
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/l_event.png)  
+##### 3. down->up(事件未被消费-不对view设置onClickListener)
 ```android
    //在1.的基础上添加如下代码
     System.out.println("-----第二次事件分发-----");
@@ -96,7 +96,7 @@
      顶层容器->View dispatchTouchEvent
      顶层容器的 onTouch 事件
 ```
-4. down-up(事件被消费-对view设置onClickListener)
+##### 4. down-up(事件被消费-对view设置onClickListener)
 ```android
    //在2.的基础上添加如下代码
     System.out.println("-----第二次事件分发-----");
@@ -119,7 +119,7 @@
      子控件View的 onTouch 事件
      子控件view的 onClick 事件
 ```
-5. down-up(两个子view-事件被消费-对view设置onClickListener)
+##### 5. down-up(两个子view-事件被消费-对view设置onClickListener)
 ```android
    //在4.的基础上添加如下代码
     View view2 = new View(0, 0, 300, 300);
@@ -144,6 +144,20 @@
 ```
 `注意：事件被消费后第二次事件分发就不会走view2了`
 #### 二、源码解析
+##### 1. Activity事件分发流程
+```mermaid
+graph TD
+A[开始] --> B(Activity.dispatchTouchEvent)
+B --> |getWindow().superDispatchTouchEvent(ev)| C[PhoneWindow.superDispatchTouchEvent]
+C --> |mDecor.superDispatchTouchEvent(event)| D[DecorView.superDispatchTouchEvent(event)]
+D --> |super.dispatchTouchEvent(event)| E{viewGroup.dispatchTouchEvent()}
+E --> |false| F(Activity.onTouchEvent)
+E --> |true| I(结束)
+F --> |mWindow.shouldCloseOnTouch(this.event)| G{window.shouldCloseOnTouch}
+G --> |false| I
+G --> |true| J(finish())
+J --> |true| I
+```
 参考：  
 [Android事件分发流程
 ]( https://www.jianshu.com/p/488100d60cad
