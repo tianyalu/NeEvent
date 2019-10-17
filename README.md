@@ -145,19 +145,15 @@
 `注意：事件被消费后第二次事件分发就不会走view2了`
 #### 二、源码解析
 ##### 1. Activity事件分发流程
-```mermaid
-graph TD
-A[开始] --> B(Activity.dispatchTouchEvent)
-B --> |getWindow.superDispatchTouchEvent| C[PhoneWindow.superDispatchTouchEvent]
-C --> |mDecor.superDispatchTouchEvent| D[DecorView.superDispatchTouchEvent]
-D --> |super.dispatchTouchEvent| E{viewGroup.dispatchTouchEvent}
-E --> |false| F(Activity.onTouchEvent)
-E --> |true| I(结束)
-F --> |mWindow.shouldCloseOnTouch| G{window.shouldCloseOnTouch}
-G --> |false| I
-G --> |true| J(finish)
-J --> |true| I
-```
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_activity.png)  
+##### 2. ViewGroup事件分发流程
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_viewgroup.png) 
+##### 4. View事件分发流程
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_view.png)  
+##### 5. 事件分发流程U型图
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_down_u.png)  
+##### 6. 事件分发流程down_up流程图  
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_down_up_consume.png)  
 参考：  
 [Android事件分发流程
 ]( https://www.jianshu.com/p/488100d60cad
