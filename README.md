@@ -149,7 +149,10 @@
 ##### 2. ViewGroup事件分发流程
 ![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_viewgroup.jpg) 
 ##### 4. View事件分发流程
-![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_view.jpg)  
+![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_view.jpg) 
+ 
+*** 
+
 ##### 5. 事件分发流程U型图
 ![image](https://github.com/tianyalu/NeEvent/blob/master/show/event_down_u.png)  
 ##### 6. 事件分发流程down_up流程图  
