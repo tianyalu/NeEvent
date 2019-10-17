@@ -148,14 +148,14 @@
 ```mermaid
 graph TD
 A[开始] --> B(Activity.dispatchTouchEvent)
-B --> |getWindow().superDispatchTouchEvent(ev)| C[PhoneWindow.superDispatchTouchEvent]
-C --> |mDecor.superDispatchTouchEvent(event)| D[DecorView.superDispatchTouchEvent(event)]
-D --> |super.dispatchTouchEvent(event)| E{viewGroup.dispatchTouchEvent()}
+B --> |getWindow.superDispatchTouchEvent| C[PhoneWindow.superDispatchTouchEvent]
+C --> |mDecor.superDispatchTouchEvent| D[DecorView.superDispatchTouchEvent]
+D --> |super.dispatchTouchEvent| E{viewGroup.dispatchTouchEvent}
 E --> |false| F(Activity.onTouchEvent)
 E --> |true| I(结束)
-F --> |mWindow.shouldCloseOnTouch(this.event)| G{window.shouldCloseOnTouch}
+F --> |mWindow.shouldCloseOnTouch| G{window.shouldCloseOnTouch}
 G --> |false| I
-G --> |true| J(finish())
+G --> |true| J(finish)
 J --> |true| I
 ```
 参考：  
